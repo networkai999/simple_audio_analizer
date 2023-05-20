@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>file upload</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+</head>
+
+<body>
+
+    <div class="input-div-flex">
+        <input name="file" id="file" type="file" accept="audio/wav">
+        <label for="file" class="custom-file-upload">Upload file</label>
+        <label id="filenameLabel">Upload file</label>
+        <div class="input-div-flex-intern">
+            <span class="material-symbols-outlined" id="btnUpload" onclick="sendRequest()">
+                upload
+            </span>
+        </div>
+        <div class="response-visualizer" id="response-visualizer">
+            <div><span>Sample rate: </span><span id="sample-rate"></span></div>
+            <div><span>Bits per sample: </span><span id="bits_per_sample"></span></div>
+            <div> <span>Duration: </span><span id="duration"></span></div>
+            <div> <span>Num. Channels: </span><span id="num_channels"></span></div>
+        </div>
+    </div>
+
+    <!-- <button onclick="sendRequest()">SEND REQUEST</button> -->
+    <!-- <button onclick="genCredential()">GEN CRED</button> -->
+
+    <script type="application/javascript">
+
+
+        const uploader = document.getElementById("file");
+        const filenameLabel = document.getElementById("filenameLabel");
+        const btnUpload = document.getElementById("btnUpload");
+        const responseVisualizer = document.getElementById("response-visualizer");
+
+        uploader.addEventListener('change', () => {
+            filenameLabel.textContent = uploader.files[0].name;
+            btnUpload.style.color = "rgb(10, 176, 29)";
+            responseVisualizer.style.display = "none";
+        });
+
+
+
+        const sampleRate = document.getElementById("sample-rate");
+        const bitsPerSample = document.getElementById("bits_per_sample");
+        const duration = document.getElementById("duration");
+        const nChannels = document.getElementById("num_channels");
+        function sendRequest() {
+            const fileInput = document.getElementById('file');
+            const file = fileInput.files[0];
+            // Crea un oggetto FormData per inviare il file
+            const formData = new FormData();
+            formData.append('audio', file);
+
+            const url = new URL("http://localhost:5000/upload")
+
+            var obj;
+            // Effettua la richiesta POST all'API Python
+            fetch(url, {
+                mode: 'cors',
+                method: 'POST',
+                body: formData
+            })
+                .then((resp) => resp.json())
+                .then(function (response) {
+                    console.info('fetch()', response);
+                    obj = response
+                    if (obj != null || obj != undefined) {
+                        responseVisualizer.style.display = "flex";
+                        sampleRate.textContent = obj['sample_rate']
+                        bitsPerSample.textContent = obj['bits_per_sample']
+                        duration.textContent = obj['duration']
+                        nChannels.textContent = obj['num_channels']
+                    }
+
+                    console.log(obj)
+                    return response;
+                });
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
