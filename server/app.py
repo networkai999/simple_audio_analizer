@@ -30,13 +30,13 @@ class FileAnalized:
 def upload():
   # Check if there is a WAV file in the POST request
   if 'audio' not in request.files:
-    return {'error': 'Nessun file WAV ricevuto.'}, 400
+    return {'error': 'No WAV files received.'}, 400
 
   file = request.files['audio']
 
   # Check the file extension
   if file.filename == '' or not file.filename.endswith('.wav'):
-    return {'error': 'File WAV non valido.'}, 400
+    return {'error': 'Invalid WAV file.'}, 400
 
   # Save the WAV file to disk
   filename = f'{str(uuid.uuid4())}_audio.wav'
