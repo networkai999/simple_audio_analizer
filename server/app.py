@@ -9,10 +9,12 @@ from flask_cors import CORS
 import os
 import secrets
 
-
+# initialize flask api
 app = Flask(__name__)
 CORS(app)
 
+
+# object that will be returned to the client
 class FileAnalized:
   def __init__(self, sample_rate, bits_per_sample,duration,num_channels):
     self.sample_rate = sample_rate
@@ -26,17 +28,17 @@ class FileAnalized:
 
 @app.route('/upload', methods=['POST'])
 def upload():
-  # Verifica se è presente un file WAV nella richiesta POST
+  # Check if there is a WAV file in the POST request
   if 'audio' not in request.files:
     return {'error': 'Nessun file WAV ricevuto.'}, 400
 
   file = request.files['audio']
 
-  # Verifica l'estensione del file
+  # Check the file extension
   if file.filename == '' or not file.filename.endswith('.wav'):
     return {'error': 'File WAV non valido.'}, 400
 
-  # Salva il file WAV su disco
+  # Save the WAV file to disk
   filename = f'{str(uuid.uuid4())}_audio.wav'
   file.save(filename)
   file.close()
@@ -48,12 +50,14 @@ def upload():
  
 
 
-
+# function that takes care 
+# of analyzing the wav audio 
+# file and returning its specifications
 def analizeFile(filename):
 
   f = wavfile.open(filename,'r')
 
-
+  # create the final object
   _fileanalized = FileAnalized(f.sample_rate,f.bits_per_sample,f.duration,f.num_channels)
 
   f.close()
