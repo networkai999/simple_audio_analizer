@@ -4,14 +4,14 @@ Simple analysis of wav audio.
 This analysis of audio files is similar to what we use in our ***Dapp*** **Music Central** , precisely to maintain an optimal range of audio quality.
 
 ### Project structure
-The project contains a client-side and a server-side , so the side will take care of uploading the audio file and calling the server-side api that will parse the incoming file and respond to our client. 
+The project contains a **client-side** and a **server-side** , so the side will take care of uploading the audio file and calling the server-side api that will parse the incoming file and respond to our client. 
 
 &nbsp; - **root** <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **server** <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *app.py* <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *requirements.txt* <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**client** <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *fileuplad.html* <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *fileupload.html* <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *style.css*
 
 ### Prerequisites
