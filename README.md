@@ -1,6 +1,18 @@
 # Simple audio analizer
 
-Simple analysis of wav audio. The project contains a client-side and a server-side,so the side will take care of uploading the audio file and calling the server-side api that will parse the incoming file and respond to our client. 
+Simple analysis of wav audio. 
+This analysis of audio files is similar to what we use in our ***Dapp*** **Music Central** , precisely to maintain an optimal range of audio quality.
+
+### Project structure
+The project contains a client-side and a server-side , so the side will take care of uploading the audio file and calling the server-side api that will parse the incoming file and respond to our client. 
+
+&nbsp; - **root** <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; **server** <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *app.py* <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *requirements.txt* <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**client** <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *fileuplad.html* <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *style.css*
 
 ### Prerequisites
 - ***python3***
@@ -44,12 +56,12 @@ Once open in the web perform the upload of the audio file , invoke the server si
 }
 ```
 
-# What is an Audio Sample Rate and What Sample Rate Should I Record At?
+## What is an Audio Sample Rate and What Sample Rate Should I Record At?
 
-## Sample Rate: A Definition
+### Sample Rate: A Definition
 Simply put, the sample rate is the number of times per second audio is sampled. For instance, at a sample rate of 44.1 kHz, the waveform is captured 44100 times per second.
 
-## The Most Common Sample Rates
+### The Most Common Sample Rates
 The higher the sampling rate, the more accurate the sound wave representation will be. Lower sampling rates mean fewer samples per second. With less audio data, the audio representation will be approximate, to some extent.
 
 The most common sampling rate values are **44.1 kHz** and **48 kHz**. **44.1 kHz** is the standard rate for audio CDs. Generally, movies use **48 kHz** audio. Even though both sample rates can accurately capture the entire frequency spectrum of human hearing, music producers and engineers often choose to use higher sample rates to create hi-res recordings.
